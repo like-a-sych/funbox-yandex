@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Global, css } from "@emotion/react";
+import { Container, Flex } from "./UI/UI.style";
+import YandexMap from "./components/Map/YandexMap";
+import InputFields from "./components/InputFields/InputFields";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div className="App">
+			<Global
+				styles={css`
+					* {
+						margin: 0;
+						padding: 0;
+						box-sizing: border-box;
+						font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+							"Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+							"Helvetica Neue", sans-serif;
+					}
+					body {
+						background-color: #ddd;
+					}
+					button {
+						border: none;
+						font-family: inherit;
+					}
+				`}
+			/>
+
+			<Container>
+				<Flex align="flex-start" justify="center" gap="50px">
+					<Flex>
+						<InputFields />
+					</Flex>
+					<Flex align="center">
+						<YandexMap />
+					</Flex>
+				</Flex>
+			</Container>
+		</div>
+	);
 }
 
 export default App;

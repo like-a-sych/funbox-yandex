@@ -18,8 +18,19 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+		"jsxImportSource": "@emotion/react"
   },
+	"typeRoots": [
+		"./types",
+		"./node_modules/@types",
+		"./node_modules/@yandex/ymaps3-types"
+	],
+	"paths": {
+		"ymaps3": [
+			"./node_modules/@yandex/ymaps3-types"
+		]
+	},
   "include": [
     "src"
   ]
