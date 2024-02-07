@@ -4,14 +4,20 @@ import { ListItem } from "../ListItem/ListItem";
 import { Flex } from "../../UI/UI.style";
 import { Input, MarkList } from "./InputFields.style";
 
-import type { Address } from "../../interfaces/types";
+import type { Address, ListActionType } from "../../interfaces/types";
 import { useItemList } from "../../hooks/useItemList";
 
-export default function InputFields() {
+export default function InputFields({
+	appState,
+	dispatch,
+}: {
+	appState: Address[];
+	dispatch: React.Dispatch<ListActionType>;
+}) {
 	const [inputValue, setValue] = useState("");
 	const inputRef = useRef<HTMLInputElement>(null);
 
-	const { state, addItem, deleteItem } = useItemList();
+	const { addItem, deleteItem, moveItem } = useItemList(dispatch);
 
 	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -36,13 +42,13 @@ export default function InputFields() {
 					}}
 				/>
 				<MarkList>
-					{state.map((list: Address) => {
+					{appState.map((list: Address) => {
 						return (
 							<ListItem
 								key={list.id}
-								id={list.id}
-								address={list.address}
+								item={list}
 								deleteItem={deleteItem}
+								moveItem={moveItem}
 							/>
 						);
 					})}

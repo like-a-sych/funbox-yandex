@@ -3,8 +3,11 @@ import { Global, css } from "@emotion/react";
 import { Container, Flex } from "./UI/UI.style";
 import YandexMap from "./components/Map/YandexMap";
 import InputFields from "./components/InputFields/InputFields";
+import { reducer } from "./reducers/mapReducer";
 
 function App() {
+	const [state, dispatch] = React.useReducer(reducer, []);
+
 	return (
 		<div className="App">
 			<Global
@@ -26,11 +29,10 @@ function App() {
 					}
 				`}
 			/>
-
 			<Container>
 				<Flex align="flex-start" justify="center" gap="50px">
 					<Flex>
-						<InputFields />
+						<InputFields appState={state} dispatch={dispatch} />
 					</Flex>
 					<Flex align="center">
 						<YandexMap />

@@ -1,22 +1,8 @@
 import React from "react";
 
-import type { Address, ListActionType, Order } from "../interfaces/types";
+import type { Address, ListActionType, IPayload } from "../interfaces/types";
 
-export function useItemList() {
-	const [state, dispatch] = React.useReducer(reducer, []);
-
-	function reducer(state: Order[], action: ListActionType) {
-		const { type, payload } = action;
-		switch (type) {
-			case "add":
-				return [...state, { ...payload, order: state.length + 1 }];
-			case "delete":
-				return state.filter((item) => item.id !== payload.id);
-			default:
-				return state;
-		}
-	}
-
+export function useItemList(dispatch: React.Dispatch<ListActionType>) {
 	const addItem = (item: Address) => {
 		dispatch({
 			type: "add",
@@ -31,5 +17,17 @@ export function useItemList() {
 		});
 	};
 
-	return { deleteItem, addItem, state };
+	const moveItem = (item: IPayload) => {
+		console.log(item);
+		dispatch({
+			type: "move",
+			payload: item,
+		});
+	};
+
+	return {
+		deleteItem,
+		addItem,
+		moveItem,
+	};
 }
