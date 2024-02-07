@@ -3,14 +3,14 @@ interface Address {
 	address: string;
 };
 
-interface Order extends Address {
-	order: number
+interface IPayload extends Address {
+	idEnd?:string;
 }
 
-type ListReducerType = "add" | "delete" | "move";
+type ListReducerType = "add" | "delete" | "move" ;
 
 interface ListActionType {
 	type: ListReducerType;
-	payload: Address;
+	payload: IPayload;
 }
-export type {Address, ListReducerType, ListActionType, Order}
+export type {Address, ListReducerType, ListActionType, IPayload}
