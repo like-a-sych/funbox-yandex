@@ -18,16 +18,15 @@ function reducer(state: Address[], action: ListActionType) {
 				}
 				return index;
 			}, -1);
-
 			if (dragElement) {
 				const sortedArr = state.reduce(
 					(arr: Address[], element, currentIdex) => {
 						// if (currentIdex + 1 === indexEndElement) {
 						// 	return [...arr, element, dragElement];
-						// }
-						if (currentIdex === indexEndElement) {
+						// } 
+						if (currentIdex === indexEndElement ) {
 							return [...arr, dragElement, element];
-						}
+						} 
 						if (element.id === payload.id) {
 							return arr;
 						}
