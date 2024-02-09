@@ -3,11 +3,11 @@ import { Global, css } from "@emotion/react";
 import { Container, Flex } from "./UI/UI.style";
 import { YandexMap } from "./components/Map/YandexMap";
 import { InputFields } from "./components/InputFields/InputFields";
-import { reducer } from "./reducers/mapReducer";
+import { initialState, reducer } from "./reducers/mapReducer";
 import { YMaps } from "@pbe/react-yandex-maps";
 
 function App() {
-	const [state, dispatch] = React.useReducer(reducer, []);
+	const [state, dispatch] = React.useReducer(reducer, initialState);
 
 	return (
 		<div className="App">
