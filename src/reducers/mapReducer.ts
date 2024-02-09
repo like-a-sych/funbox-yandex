@@ -1,5 +1,8 @@
 import { Address, ListActionType } from "../interfaces/types";
 
+
+const initialState:Address[] = [];
+
 function reducer(state: Address[], action: ListActionType) {
 	const { type, payload } = action;
 	switch (type) {
@@ -42,4 +45,4 @@ function reducer(state: Address[], action: ListActionType) {
 	}
 }
 
-export {reducer}
+export {reducer, initialState}
