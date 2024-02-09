@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useRef, useState } from "react";
+import React, { FormEvent, useEffect, useRef } from "react";
 import { ListItem } from "../ListItem/ListItem";
 
 import { Flex } from "../../UI/UI.style";
@@ -7,24 +7,24 @@ import { Input, MarkList } from "./InputFields.style";
 import type { Address, ListActionType } from "../../interfaces/types";
 import { useItemList } from "../../hooks/useItemList";
 
-export default function InputFields({
+export function InputFields({
 	appState,
 	dispatch,
 }: {
 	appState: Address[];
 	dispatch: React.Dispatch<ListActionType>;
 }) {
-	const [inputValue, setValue] = useState("");
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	const { addItem, deleteItem, moveItem } = useItemList(dispatch);
 
 	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		inputValue
-			? addItem({ id: `id-${Math.random()}`, address: inputValue })
+		inputRef.current?.value
+			? addItem({ id: `id-${Math.random()}`, address: inputRef.current?.value })
 			: alert("пустая строка");
-		setValue("");
+
+		inputRef.current?.value && (inputRef.current.value = "");
 	};
 
 	useEffect(() => {
@@ -34,13 +34,7 @@ export default function InputFields({
 	return (
 		<Flex direction="column">
 			<form onSubmit={handleSubmit}>
-				<Input
-					ref={inputRef}
-					value={inputValue}
-					onChange={() => {
-						setValue(inputRef.current?.value ?? "");
-					}}
-				/>
+				<Input ref={inputRef} />
 				<MarkList>
 					{appState.map((list: Address) => {
 						return (

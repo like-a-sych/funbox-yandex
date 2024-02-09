@@ -3,6 +3,7 @@ import React from "react";
 import { Delete, Item } from "./ListIte.style";
 
 import type { Address, IPayload } from "../../interfaces/types";
+import { TEST_ID } from "../../constants/constants";
 
 interface ListItemsProps {
 	item: Address;
@@ -42,7 +43,12 @@ export function ListItem({ item, deleteItem, moveItem }: ListItemsProps) {
 			onDragOver={handleOver}
 		>
 			{item.address}
-			<Delete onClick={handleDelete} id={item.id} type="button">
+			<Delete
+				data-testid={TEST_ID.deleteButton}
+				onClick={handleDelete}
+				id={item.id}
+				type="button"
+			>
 				x
 			</Delete>
 		</Item>
